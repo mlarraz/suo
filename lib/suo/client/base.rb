@@ -6,7 +6,7 @@ module Suo
         acquisition_delay: 0.01,
         stale_lock_expiration: 3600,
         resources: 1,
-        ttl: 60,
+        ttl: 60
       }.freeze
 
       BLANK_STR = "".freeze
@@ -47,9 +47,7 @@ module Suo
 
       def locks
         val, _ = get
-        cleared_locks = deserialize_and_clear_locks(val)
-
-        cleared_locks
+        deserialize_and_clear_locks(val)
       end
 
       def refresh(token)
@@ -81,7 +79,7 @@ module Suo
           break unless acquisition_lock
           break if set(serialize_locks(cleared_locks), cas, expire: cleared_locks.empty?)
         end
-      rescue LockClientError => _ # rubocop:disable Lint/HandleExceptions
+      rescue LockClientError => _
         # ignore - assume success due to optimistic locking
       end
 
@@ -119,11 +117,11 @@ module Suo
         fail NotImplementedError
       end
 
-      def set(newval, cas) # rubocop:disable Lint/UnusedMethodArgument
+      def set(newval, cas)
         fail NotImplementedError
       end
 
-      def initial_set(val = BLANK_STR) # rubocop:disable Lint/UnusedMethodArgument
+      def initial_set(val = BLANK_STR)
         fail NotImplementedError
       end
 

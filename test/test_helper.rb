@@ -6,7 +6,6 @@ if ENV["CODECLIMATE_REPO_TOKEN"]
 end
 
 require "suo"
-require "thread"
 require "minitest/autorun"
 require "minitest/benchmark"
 
