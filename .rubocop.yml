@@ -6,6 +6,7 @@ AllCops:
   Exclude:
     - .git/**/*
     - tmp/**/*
+    - vendor/**/*
     - suo.gemspec
 
 Lint/DuplicateMethods:
